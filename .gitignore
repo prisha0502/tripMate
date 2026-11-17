@@ -1,0 +1,7 @@
+node_modules/
+client/dist/
+server/data/db.json
+.env
+.DS_Store
+work/
+.pnpm-store/
