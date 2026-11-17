@@ -45,8 +45,8 @@ const seed = [
 ].map(([name,country,type,budget,bestTime,description,attractions,thingsToDo,dailyCost])=>({id:name.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),name,country,type,budget,bestTime,description,attractions,thingsToDo,dailyCost,photo:`https://images.unsplash.com/${photos[name]}?auto=format&fit=crop&w=1000&q=85`,accommodation:[{name:`The ${name} House`,type:'Boutique stay',price:dailyCost*1.7},{name:`${name} Garden Retreat`,type:'Guesthouse',price:dailyCost}],tips:['Book popular experiences ahead during peak season.','Carry a reusable water bottle and comfortable walking shoes.','Keep a small amount of local cash for markets and local transport.']}));
 
 const mongoUri = process.env.MONGODB_URI;
-if (process.env.NODE_ENV === 'production' && (!mongoUri || !process.env.ADMIN_PASSWORD)) {
- throw new Error('MONGODB_URI and ADMIN_PASSWORD are required in production so data persists and the demo admin is secure.');
+if (process.env.NODE_ENV === 'production' && !process.env.ADMIN_PASSWORD) {
+ throw new Error('ADMIN_PASSWORD is required in production so the demo admin is secure.');
 }
 let storageName = 'JSON file';
 const stateSchema = new mongoose.Schema({
